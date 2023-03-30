@@ -1,0 +1,9 @@
+.container {
+    border: 1px solid red;
+    width: 100vw;
+    padding: 20px;
+}
+
+.invisible {
+    display: none;
+}
