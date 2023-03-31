@@ -3,11 +3,12 @@
 <div class="container">
 
     <h1>DASHBOARD</h1>
+    <h4>Olá, {{session()->get('name')}}!</h4>
 
     <h4>Usuários: </h4>
    <div class="users-list">
         <div class="accordion accordion-flush" id="accordion-users">
-        @foreach (session()->get('users') as $user)
+        @foreach (session('users') as $user)
         <div class="accordion-item">
           <h2 class="accordion-header">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse{{$user['id']}}" aria-expanded="false" aria-controls="flush-collapse{{$user['id']}}">
@@ -27,5 +28,7 @@
      </div>
    </div>
 
+   <h4>Ordens:</h4>
+   
 </div>
 @endsection

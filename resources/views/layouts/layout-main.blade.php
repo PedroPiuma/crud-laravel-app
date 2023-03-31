@@ -19,15 +19,27 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/">Home</a>
-              </li>
+              @if (!session('name'))
               <li class="nav-item">
                 <a class="nav-link" href="/login">Login</a>
               </li>
+              @endif
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/">Home</a>
+              </li>
+              @if (session('tier') === 1)
               <li class="nav-item">
                 <a class="nav-link" href="/admin">Dashboard</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/sessionView">Session View</a>
+              </li>
+              @endif
+             @if (session('name'))
+              <li class="nav-item">
+                  <a class="nav-link" href="/logout">Logout</a>
+               </li>
+             @endif
             </ul>
           </div>
         </div>

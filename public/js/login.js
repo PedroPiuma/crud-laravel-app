@@ -10,7 +10,6 @@ const checkEye = () => {
         document.querySelector("#closed-eye").style.display = "none";
     }
 };
-checkEye();
 
 const showPass = () => {
     if (passwordInput.getAttribute("type") === "password")
