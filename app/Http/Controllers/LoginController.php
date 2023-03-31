@@ -12,7 +12,7 @@ class LoginController extends Controller
 {
     public function login()
     {
-        if (session()->get('name')) return redirect('/');
+        if (session('name')) return redirect('/');
 
         return view('login');
     }
@@ -37,12 +37,17 @@ class LoginController extends Controller
             $password = $request->input('password');
 
             $user =  DB::table('users')->where(['email' => $email])->get()->first();
-            session()->put([
-                "id" => $user->id,
-                'name' => $user->name,
-                "email" => $user->email,
-                'tier' => $user->tier
-            ]);
+
+            if ($user->password === $password) {
+                session()->put([
+                    "id" => $user->id,
+                    'name' => $user->name,
+                    "email" => $user->email,
+                    'tier' => $user->tier
+                ]);
+            } else {
+                return redirect('/login');
+            }
 
             if ($user->password === $password && $user->tier === 1) {
                 $users = DB::table('users')->get()->all();
@@ -51,9 +56,13 @@ class LoginController extends Controller
                     $data['users'][] = ["id" => $user->id, 'name' => $user->name, "email" => $user->email, 'tier' => $user->tier];
                 }
                 session()->put($data);
+
+                $orders = DB::table('orders')->get()->all();
+                session()->put('orders', $orders);
+
                 return view('dashboard');
             } else {
-                return view('home');
+                return redirect('/');
             }
         }
     }
@@ -81,6 +90,7 @@ class LoginController extends Controller
         session()->forget('email');
         session()->forget('tier');
         session()->forget('users');
+        session()->forget('orders');
         return redirect('/');
     }
 }

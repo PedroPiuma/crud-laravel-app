@@ -26,12 +26,13 @@ class Main extends Controller
     {
         $request->validate(
             [
-                'category-order' => ['required'],
+                'category-order' => ['required', 'not_in:default'],
                 'orderTitle' => 'required|min:4',
                 'orderBody' => 'required'
             ],
             [
                 'category-order.required' => 'É necessário selecionar a categoria do pedido.',
+                'category-order.not_in' => 'Selecione uma categoria válida.',
                 'orderTitle.required' => 'É necessário um título.',
                 'orderBody.required' => 'É necessário uma descrição.',
             ]

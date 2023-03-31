@@ -12,6 +12,8 @@ class SessionControler extends Controller
         // echo "<pre>";
         // print_r(session()->all());
         if (session('tier') === 1) {
+            // echo "<pre>";
+            // print_r(session()->all());
             return view('sessionView');
         } else {
             return redirect('/');

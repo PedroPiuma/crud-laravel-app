@@ -8,11 +8,12 @@
     <form action="{{route('order')}}" method="post">
         @csrf
         <select class="form-select mb-3" name="category-order">
-            <option selected>Categoria</option>
-            <option value="1">Eletrônicos</option>
-            <option value="2">Móveis</option>
-            <option value="3">Ferramentas</option>
-            <option value="4">Consumíveis</option>
+            <option selected value="default">Categoria</option>
+            <option value="eletrônico">Eletrônicos</option>
+            <option value="móveis">Móveis</option>
+            <option value="ferramentas">Ferramentas</option>
+            <option value="consumíveis">Consumíveis</option>
+            <option value="outros">Outros</option>
           </select>
         <div class="mb-3">
             <label for="orderTitle" class="form-label">Título do pedido:</label>
